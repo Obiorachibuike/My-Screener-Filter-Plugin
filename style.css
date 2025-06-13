@@ -1,0 +1,217 @@
+/* Custom styles for the My Screener Filter plugin */
+
+/* Basic reset for consistent box model */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Body styling for overall page background and font */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f0f2f5; /* A slightly darker light gray for depth */
+    margin: 0; /* Remove default body margin */
+    padding: 0; /* Remove default body padding */
+    min-height: 100vh; /* Ensure body takes at least full viewport height */
+    display: flex; /* Use flexbox for main content centering if needed */
+    flex-direction: column; /* Stack content vertically */
+    align-items: center; /* Center horizontally */
+    padding-top: 2rem; /* Add some space from the top */
+    padding-bottom: 2rem; /* Add some space at the bottom */
+}
+
+/* Main container for the application */
+.container {
+    max-width: 960px; /* Max width for larger screens */
+    width: 95%; /* Responsive width */
+    margin: 0 auto; /* Center the container */
+    padding: 1.5rem; /* Consistent padding inside the container */
+    background-color: #ffffff; /* White background for the main content area */
+    border-radius: 0.75rem; /* More rounded corners (shadow-lg already adds some) */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Stronger shadow for "floating" effect */
+    transition: all 0.3s ease-in-out; /* Smooth transitions for any future changes */
+}
+
+/* Headings */
+h1 {
+    font-size: 2.25rem; /* text-4xl */
+    font-weight: 700; /* font-bold */
+    margin-bottom: 1.5rem; /* mb-6 */
+    text-align: center;
+    color: #1a202c; /* Deeper text color */
+}
+
+h2 {
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: 600; /* font-semibold */
+    margin-bottom: 1rem; /* mb-4 */
+    color: #2d3748; /* Slightly lighter text for sub-headings */
+}
+
+/* Sections for filter controls and filtered data */
+.bg-white.shadow-md.rounded-lg.p-6 {
+    padding: 1.5rem; /* Ensure consistent padding */
+    margin-bottom: 1.5rem; /* Spacing between sections */
+    border: 1px solid #e2e8f0; /* Subtle border for definition */
+}
+
+/* Styling for dynamically added filter rows */
+.filter-row {
+    margin-bottom: 1rem; /* Space between filter rows */
+    align-items: stretch; /* Stretch items to fill height in flex container */
+}
+
+/* Styling for select and input elements within filter rows */
+.filter-row select,
+.filter-row input[type="text"],
+.filter-row input[type="number"] {
+    height: 40px; /* Consistent height for all inputs */
+    line-height: 40px; /* Center text vertically */
+    background-color: #fdfdfe; /* Slightly off-white for inputs */
+    border: 1px solid #cbd5e0; /* Lighter border */
+    font-size: 0.95rem; /* Slightly larger font */
+}
+
+/* Focus styles for inputs and selects */
+.filter-row select:focus,
+.filter-row input:focus {
+    border-color: #4299e1; /* Blue border on focus */
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5); /* Blue glow on focus */
+}
+
+/* Button general styles */
+.btn {
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* Primary button (Add Filter) */
+.btn-primary {
+    /* Tailwind classes are primary for colors, this adds polish */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    background-image: linear-gradient(to bottom right, #3b82f6, #2563eb); /* Subtle gradient */
+    border: none;
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px); /* Slight lift on hover */
+    box-shadow: 0 6px 10px -2px rgba(0, 0, 0, 0.15), 0 3px 6px -2px rgba(0, 0, 0, 0.08);
+}
+
+/* Danger button (Remove Filter) */
+.remove-filter-button {
+    /* Tailwind classes handle colors */
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.remove-filter-button:hover {
+    transform: translateY(-1px); /* Slight lift on hover */
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+}
+
+/* Table styling */
+#data-table {
+    width: 100%;
+    border-collapse: separate; /* Required for rounded corners on the table itself */
+    border-spacing: 0;
+    overflow: hidden; /* Ensures rounded corners on the table are visible */
+    border-radius: 0.75rem; /* Rounded corners for the entire table */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+#data-table thead th {
+    /* Styles are applied by JS dynamically */
+    padding: 1rem 1.5rem; /* More vertical padding for headers */
+    background-color: #edf2f7; /* Lighter background for headers */
+    border-bottom: 2px solid #e2e8f0; /* More prominent bottom border */
+    position: sticky; /* Sticky headers for scrolling tables */
+    top: 0;
+    z-index: 10; /* Ensure sticky headers are above content */
+}
+
+/* Apply rounded corners only to the first and last header cells */
+#data-table thead th:first-child {
+    border-top-left-radius: 0.75rem;
+}
+#data-table thead th:last-child {
+    border-top-right-radius: 0.75rem;
+}
+
+#data-table tbody td {
+    padding: 1rem 1.5rem; /* More padding for cells */
+    border-bottom: 1px solid #f0f2f5; /* Very subtle border between rows */
+    background-color: #ffffff; /* White background for rows */
+}
+
+#data-table tbody tr:last-child td {
+    border-bottom: none; /* No border for the last row */
+}
+
+/* Responsive Table container */
+.overflow-x-auto {
+    /* This class is crucial for mobile responsiveness of tables */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+/* Style for a simple message box (instead of alert) */
+.message-box {
+    position: fixed;
+    top: 1.5rem; /* Slightly more space from top */
+    right: 1.5rem; /* Slightly more space from right */
+    padding: 0.8rem 1.5rem; /* More padding */
+    border-radius: 0.5rem; /* More rounded */
+    box-shadow: 0 6px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1); /* Stronger shadow */
+    font-size: 1rem; /* Standard font size */
+    opacity: 0; /* Hidden by default */
+    transform: translateX(100%); /* Start off-screen to the right */
+    animation: slideIn 0.3s forwards ease-out; /* Animation for showing */
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out; /* Smooth fade and slide */
+    z-index: 50; /* Ensure it's on top */
+    color: white; /* Ensure text color is white */
+}
+
+/* Animation for the message box sliding in */
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Specific background colors for message box types */
+.message-box.bg-red-600 {
+    background-color: #dc2626; /* Deeper red */
+}
+
+.message-box.bg-green-600 {
+    background-color: #16a34a; /* Deeper green */
+}
+
+.message-box.bg-blue-600 {
+    background-color: #2563eb; /* Deeper blue */
+}
+
+/* Responsive adjustments for the message box on smaller screens */
+@media (max-width: 640px) {
+    .message-box {
+        top: 1rem;
+        left: 1rem;
+        right: 1rem;
+        width: auto; /* Allow width to be determined by content */
+        text-align: center;
+        transform: translateY(-100%); /* Slide in from top for mobile */
+        animation: slideInMobile 0.3s forwards ease-out;
+    }
+    @keyframes slideInMobile {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
